@@ -23,23 +23,29 @@ namespace StoreApp
     {
 
         private Product _Product { get; set; } = new();
-        public Product Product { get => _Product;
+        public Product Product
+        {
+            get => _Product;
             set
             {
-                _Product=value;
+                _Product = value;
                 NotifyPropertyChanged();
             }
-                }
+        }
         public ObservableCollection<Product> ProductList { get; set; }
+
+        public ObservableCollection<DTOProduct> BasketList { get; set; } = new();  
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
-            ProductList=new ObservableCollection<Product>();
-            Product=new Product() { Image = new BitmapImage(new Uri("https://www.bakenroll.az/en/image/coca-cola.jpg")), Name="Cola", Price=12 };
-            ProductList.Add(Product);
+            ProductList = new ObservableCollection<Product>() {
+                 new Product() { Image = new BitmapImage(new Uri("https://www.bakenroll.az/en/image/coca-cola.jpg")), Name = "Cola", Price = 3,About="0.5L LIK" },
+                 new Product() { Image = new BitmapImage(new Uri("https://www.bakenroll.az/en/image/fanta.jpg")), Name = "Fanta", Price = 3  ,About="0.5L LIK "}
+            };
         }
+     
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
@@ -53,8 +59,60 @@ namespace StoreApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AddProductWindow addProductWindow = new AddProductWindow();
-            addProductWindow.ShowDialog();
+            bool? result = addProductWindow.ShowDialog();
+            if (result == true)
+            {
+                ProductList.Add(addProductWindow.Product);
+            }
+
+
+
+        }
+
+        private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            EditWindow editWindow = new EditWindow();
+            editWindow.Product= (sender as ListBox)?.SelectedItem as Product;
+            editWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            editWindow.ShowDialog();
+        }
+
+
+        private void Button_Click_AddBasket(object sender, RoutedEventArgs e)
+        {
+            var a = ListBox.SelectedItem as Product;
+            bool HasProduct = false;
+            foreach (var i in BasketList)
+            {
+                if (i.Product.Id == a.Id)
+                { HasProduct = true;
+                    i.Count++;  
+
+
+                }
+               
+            }
+            if (HasProduct)
+            {
+               
+            }
+            else
+            {
+                int count = 1;
+                var newDtoProduct = new DTOProduct() { Product = a, Count = count };
+                BasketList.Add(newDtoProduct);
+            }
             
         }
+
+     
+
+        private void Button_Click_Basket(object sender, RoutedEventArgs e)
+        {
+            BasketWindow basketWindow = new BasketWindow();
+            basketWindow.ProductList = BasketList;
+            basketWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            basketWindow.ShowDialog();
+        }
     }
-}
+    }

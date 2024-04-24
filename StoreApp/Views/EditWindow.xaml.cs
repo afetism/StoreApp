@@ -16,24 +16,20 @@ using System.Windows.Shapes;
 namespace StoreApp.Views
 {
     /// <summary>
-    /// Interaction logic for AddProductWindow.xaml
+    /// Interaction logic for EditWindow.xaml
     /// </summary>
-    public partial class AddProductWindow : Window
+    public partial class EditWindow : Window
     {
-
-        public Product Product{ get;set;}=new Product();
-        public AddProductWindow()
+        public Product Product { get; set; } = new();
+        public EditWindow()
         {
             InitializeComponent();
             DataContext = this;
         }
 
-      
-
-        private void Button_Click_ADD(object sender, RoutedEventArgs e)
+        private void Button_Click_Edit(object sender, RoutedEventArgs e)
         {
-            
-            MessageBox.Show("Added");
+            MessageBox.Show("Edit Item");
             DialogResult = true;
         }
     }

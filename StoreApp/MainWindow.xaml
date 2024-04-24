@@ -17,7 +17,7 @@
             <ColumnDefinition Width="1*" ></ColumnDefinition>
             <ColumnDefinition Width="8*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Background="Transparent">
+        <Button Background="Transparent" Click="Button_Click_Basket">
             <Image Source="https://w7.pngwing.com/pngs/955/206/png-transparent-shopping-cart-logo-icon-shopping-cart-tag-added-to-collection-other-label-taobao-thumbnail.png" ></Image>
         </Button>
         <Grid Grid.Column="1">
@@ -30,18 +30,22 @@
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1">
-            <ListBox ItemsSource="{Binding ProductList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox Name="ListBox" ItemsSource="{Binding ProductList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="ListBox_MouseDoubleClick">
                 <ListBox.ItemTemplate>
                     <DataTemplate >
                         <StackPanel Orientation="Vertical">
                             <Image Source="{Binding Image}" Stretch="Uniform" Width="100" />
-                            <Grid >
+                            <Grid Margin="10">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0"   Content="{Binding Name}" ></Label>
                                 <Label Grid.Column="1" Content="{Binding Price}" HorizontalContentAlignment="Left" ></Label>
+                                <Button Grid.Column="2" Click="Button_Click_AddBasket">
+                      +
+                                </Button>
                             </Grid>
                         </StackPanel>
                     </DataTemplate>

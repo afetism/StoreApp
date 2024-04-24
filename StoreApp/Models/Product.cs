@@ -11,6 +11,7 @@ namespace StoreApp.Models
 {
     public class Product : INotifyPropertyChanged
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
         private ImageSource _image;
         public ImageSource Image
         {
@@ -50,7 +51,7 @@ namespace StoreApp.Models
             get => _About;
             set
             {
-                _Name = value;
+                _About = value;
                 NotifyPropertyChanged(nameof(About));
             }
         }
