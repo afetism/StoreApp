@@ -9,8 +9,42 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\affogato-4776668-hero-08-40d7a68d12ba46f48eaea3c43aba715c.jpg" />
+    <None Remove="Image\Americano-Coffee-Lounge-Ingredients.jpg" />
+    <None Remove="Image\download %283%29.jpeg" />
+    <None Remove="Image\Iced-Americano-7.jpg" />
+    <None Remove="Image\pngwing.com %283%29.png" />
+    <None Remove="Image\pngwing.com %284%29.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Image\affogato-4776668-hero-08-40d7a68d12ba46f48eaea3c43aba715c.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\Americano-Coffee-Lounge-Ingredients.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\download (3).jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\Iced-Americano-7.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Image\pngwing.com (3).png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\pngwing.com (4).png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.5.0" />
     <PackageReference Include="MaterialDesignColors" Version="3.0.0" />
-    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
   </ItemGroup>
 
 </Project>

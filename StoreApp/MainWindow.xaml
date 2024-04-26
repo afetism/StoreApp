@@ -6,61 +6,108 @@
         xmlns:local="clr-namespace:StoreApp"
         xmlns:local1="clr-namespace:StoreApp.Helpers"
         xmlns:local2="clr-namespace:StoreApp.Models"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="399" Width="564">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" ></ColumnDefinition>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Button Background="Transparent" Click="Button_Click_Basket">
-            <Image Source="https://w7.pngwing.com/pngs/955/206/png-transparent-shopping-cart-logo-icon-shopping-cart-tag-added-to-collection-other-label-taobao-thumbnail.png" ></Image>
-        </Button>
-        <Grid Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBox Margin="10"></TextBox>
-            <Button Grid.Column="1" Margin="25,5" Click="Button_Click">+</Button>
-        </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="1">
+        </Grid.RowDefinitions>
+
+
+
+
+
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <Menu>
+                <MenuItem>
+                    <MenuItem.Header>
+                        <Image Source="/image/pngwing.com (4).png" />
+
+
+                    </MenuItem.Header>
+                <MenuItem Header="Add Product" Click="Button_Click" />
+               
+                </MenuItem>
+            </Menu>
+
+
+
+
+
+            <ComboBox Grid.Column="1"
+             materialDesign:HintAssist.Hint="Search"
+             materialDesign:HintAssist.HintOpacity=".26"
+             materialDesign:ComboBoxAssist.MaxLength="10"
+             IsEditable="True" KeyDown="ComboBox_KeyDown"> 
+             
+            </ComboBox>
+
+
+
+            <Button Grid.Column="2" Click="Button_Click_Basket" BorderThickness="0" Background="Transparent">
+                <Image Source="/image/pngwing.com (3).png" Stretch="Uniform" />
+
+
+            </Button>
+
+
+        </Grid>
+        
+            <Grid Grid.Row="1">
             <ListBox Name="ListBox" ItemsSource="{Binding ProductList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="ListBox_MouseDoubleClick">
                 <ListBox.ItemTemplate>
-                    <DataTemplate >
-                        <StackPanel Orientation="Vertical">
-                            <Image Source="{Binding Image}" Stretch="Uniform" Width="100" />
-                            <Grid Margin="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0"   Content="{Binding Name}" ></Label>
-                                <Label Grid.Column="1" Content="{Binding Price}" HorizontalContentAlignment="Left" ></Label>
-                                <Button Grid.Column="2" Click="Button_Click_AddBasket">
-                      +
-                                </Button>
-                            </Grid>
-                        </StackPanel>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="10">
+                            <StackPanel Orientation="Vertical"  Background="White">
+                                <Border BorderBrush="Black" BorderThickness="1" Margin="10">
+                                    <Image Source="{Binding Image}" Stretch="Uniform" Width="100" Height="100"/>
+                                </Border>
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="{Binding Name}"></Label>
+                                    <Label Grid.Column="1" Content="{Binding Price}" HorizontalContentAlignment="Left"></Label>
+                                    <Button Grid.Column="2" Click="Button_Click_AddBasket">
+                                        +
+                                    </Button>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal" Margin="20" Background="AntiqueWhite"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="5"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
             </ListBox>
+
         </Grid>
 
+        
+
     </Grid>
-     
 
 
-   
+
 </Window>

@@ -12,8 +12,8 @@ namespace StoreApp.Models
     public class Product : INotifyPropertyChanged
     {
         public Guid Id { get; set; } = Guid.NewGuid();
-        private ImageSource _image;
-        public ImageSource Image
+        private string _image;
+        public string Image
         {
             get => _image;
             set

@@ -1,4 +1,5 @@
-﻿using StoreApp.Models;
+﻿using Bogus;
+using StoreApp.Models;
 using StoreApp.Views;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -39,10 +40,14 @@ namespace StoreApp
         public MainWindow()
         {
             InitializeComponent();
+          
             DataContext = this;
             ProductList = new ObservableCollection<Product>() {
-                 new Product() { Image = new BitmapImage(new Uri("https://www.bakenroll.az/en/image/coca-cola.jpg")), Name = "Cola", Price = 3,About="0.5L LIK" },
-                 new Product() { Image = new BitmapImage(new Uri("https://www.bakenroll.az/en/image/fanta.jpg")), Name = "Fanta", Price = 3  ,About="0.5L LIK "}
+                 new Product() { Image = "/image/download (3).jpeg", Name = "Late", Price = 3  ,About="0.5L LIK " },
+                 new Product() { Image ="/image/Americano-Coffee-Lounge-Ingredients.jpg", Name = "Amercano", Price = 3  ,About="0.5L LIK "},
+                  new Product() { Image ="/image/affogato-4776668-hero-08-40d7a68d12ba46f48eaea3c43aba715c.jpg", Name = "Amercano", Price = 3  ,About="0.5L LIK "}
+
+
             };
         }
      
@@ -72,7 +77,7 @@ namespace StoreApp
         private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             EditWindow editWindow = new EditWindow();
-            editWindow.Product= (sender as ListBox)?.SelectedItem as Product;
+            editWindow.Product= (sender as ListBox).SelectedItem as Product;
             editWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             editWindow.ShowDialog();
         }
@@ -113,6 +118,24 @@ namespace StoreApp
             basketWindow.ProductList = BasketList;
             basketWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             basketWindow.ShowDialog();
+        }
+
+        private void ComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                var basket = (ComboBox)sender;
+                ObservableCollection<Product> products = new ObservableCollection<Product>();
+                foreach (var i in ProductList)
+                {
+                    if(i.Name==basket.Text)
+                    {
+                        products.Add(i);
+
+                            }
+                }
+                ProductList = products; 
+            }
         }
     }
     }
